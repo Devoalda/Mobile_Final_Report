@@ -1,0 +1,98 @@
+ %----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+% \documentclass[11pt, notitlepage]{article} % Default font size and suppress title page
+\documentclass[a4paper, 11pt, notitlepage]{report}
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+% A note on fonts: As of 2019, NIH allows Arial, Georgia, Helvetica, and Palatino Linotype. Georgia and Arial are commercial fonts so you will need to use XeLaTeX and have them installed on your machine to use them. Palatino & Helvetica are available as free LaTeX packages so select the one you want and comment out the other.
+\usepackage{palatino} % Palatino font
+\linespread{1.05} % A little extra line spread is better for the Palatino font
+%\usepackage{helvet} % Helvetica font
+\renewcommand*\familydefault{\sfdefault} % Use the sans serif version of the font
+\usepackage[subpreambles=true]{standalone}
+\usepackage{import}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+\usepackage{amsfonts, amsmath, amsthm, amssymb} % For math fonts, symbols and environments
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Nice rules in tables
+\usepackage{wrapfig} % Required for text to wrap around figures and tables
+\usepackage[labelfont=bf]{caption} % Make figure numbering in captions bold
+\usepackage[top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry} % Page margins
+\pagestyle{empty} % Suppress headers and footers
+
+\hyphenation{ionto-pho-re-tic iso-tro-pic fortran} % Specifies custom hyphenation points for words or words that shouldn't be hyphenated at all
+
+\author{
+        Woon Jun Wei \textit{2200624} \\
+        Benjamin Loh Choon How \textit{2201590} \\
+        Wang Rongqi Richie \textit{2201942} \\
+        Poon Xiang Yuan \textit{2200559} \\
+        Low Hong Sheng Jovian \textit{2203654}\\
+    }
+
+\title{
+  INF2007 - Mobile Application Develpopment - Project Design 
+}
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	Proposal Section
+%----------------------------------------------------------------------------------------
+
+\import{Sections/}{Proposal}
+
+%----------------------------------------------------------------------------------------
+%	User Stories Section
+%----------------------------------------------------------------------------------------
+
+\import{Sections/}{User_Stories}
+
+%----------------------------------------------------------------------------------------
+%	UI Prototypes Section
+%----------------------------------------------------------------------------------------
+
+% \newpage
+\import{Sections/}{UI_Prototypes}
+
+%----------------------------------------------------------------------------------------
+%	Backlogs Section
+%----------------------------------------------------------------------------------------
+
+\import{Sections/}{Backlogs}
+
+%----------------------------------------------------------------------------------------
+%	Architecture Section
+%----------------------------------------------------------------------------------------
+
+\import{Sections/}{Software_Architecture}
+
+%----------------------------------------------------------------------------------------
+%	Appendix Section
+%----------------------------------------------------------------------------------------
+%\appendix
+%\import{Appendix/}{Appendix_A}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\newpage
+
+% \bibliography{Mobile_Project_Design} 
+% \bibliographystyle{ieee}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
