@@ -1,9 +1,10 @@
- %----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
 % \documentclass[11pt, notitlepage]{article} % Default font size and suppress title page
-\documentclass[a4paper, 11pt, notitlepage]{report}
+% \documentclass[a4paper, 11pt, notitlepage]{report}
+\documentclass[a4paper, 11pt, draft]{report}
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
@@ -38,7 +39,7 @@
     }
 
 \title{
-  INF2007 - Mobile Application Develpopment - Project Design 
+  INF2007 - Mobile Application Develpopment - Project Final Report 
 }
 %----------------------------------------------------------------------------------------
 
@@ -46,42 +47,58 @@
 
 \maketitle
 
+\pagebreak
+\tableofcontents
+\pagebreak
+
 %----------------------------------------------------------------------------------------
 %	Proposal Section
 %----------------------------------------------------------------------------------------
 
-\import{Sections/}{Proposal}
+\import{Sections/}{Introduction}
 
-%----------------------------------------------------------------------------------------
-%	User Stories Section
-%----------------------------------------------------------------------------------------
+\import{Sections/}{requirements}
 
-\import{Sections/}{User_Stories}
+\import{Sections/}{features}
+
+\import{Sections/}{Implementation}
+
+\import{Sections/}{management}
+
+\import{Sections/}{conclusion}
+
 
 %----------------------------------------------------------------------------------------
 %	UI Prototypes Section
 %----------------------------------------------------------------------------------------
 
 % \newpage
-\import{Sections/}{UI_Prototypes}
+% \import{Sections/}{UI_Prototypes}
 
-%----------------------------------------------------------------------------------------
-%	Backlogs Section
-%----------------------------------------------------------------------------------------
 
-\import{Sections/}{Backlogs}
 
 %----------------------------------------------------------------------------------------
 %	Architecture Section
 %----------------------------------------------------------------------------------------
 
-\import{Sections/}{Software_Architecture}
+% \import{Sections/}{Software_Architecture}
 
 %----------------------------------------------------------------------------------------
 %	Appendix Section
 %----------------------------------------------------------------------------------------
-%\appendix
-%\import{Appendix/}{Appendix_A}
+\appendix
+
+\import{Appendix/}{Appendix_A}
+
+\import{Appendix/}{product}
+
+\import{Appendix/}{User_Stories}
+
+%----------------------------------------------------------------------------------------
+%	Backlogs Section
+%----------------------------------------------------------------------------------------
+
+\import{Appendix/}{Backlogs}
 
 
 %----------------------------------------------------------------------------------------

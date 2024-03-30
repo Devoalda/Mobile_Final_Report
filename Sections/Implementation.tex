@@ -1,0 +1,89 @@
+% System Architecture & Implementation
+% • System architecture diagram
+% • Description of the architecture and implementation details
+% • Description on how the app employs four or more of the advanced mobile
+% features (networking, sqlite database, gps, etc.)
+% • Third party libraries, code or tools used in the application
+% • Any special algorithms or methods used
+% • (All other full diagrams to be placed in the appendix
+
+\chapter{Implementation}\label{implementation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% System Architecture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\import{Sections/}{Software_Architecture}
+
+\section{Technology Stack}
+
+This solution employs a versatile blend of technologies tailored to enhance the application's functionality, in line with the specified design requirements and themes.
+
+The first cornerstone of this stack is \textbf{Firebase}, serving as a robust backbone for networking functionalities. Leveraging Firebase's \textbf{Firestore} ensures seamless data exchange and real-time updates, while the authentication module guarantees secure access control. Additionally, \textbf{Firebase Storage} facilitates efficient storage of multimedia content, enriching the user experience with seamless access to resources.
+
+For local data management and caching, the application integrates \textbf{Room DB Cache}, specifically designed to handle user-related data. By leveraging Room, the app ensures efficient storage and retrieval of user information, enhancing performance and responsiveness.
+
+To streamline academic endeavors, the inclusion of \textbf{OCR} technology is pivotal. This feature not only enables the conversion of printed or handwritten text into digital formats but also integrates multimedia functionalities. By incorporating networking capabilities, the OCR module will download online resources (model), leveraging multithreading through \textbf{coroutinescope} for optimized performance. Furthermore, the integration of the camera allows for real-time text recognition, augmenting user accessibility to study materials. % Might want to rephrase this
+
+To enrich the educational experience, the application seamlessly integrates with Retrofit for API calls to educational services like Wolfram|Alpha, particularly for math-related queries. This integration allows the app to retrieve relevant educational content, enhancing the depth and breadth of the user's learning journey.
+
+Lastly, the inclusion of \textbf{Gemini AI SDK library} augments the application's capabilities by incorporating advanced AI functionalities. This integration enables the application to provide personalized recommendations, intelligent insights, and adaptive learning experiences, aligning with the overarching goal of delivering a comprehensive and enriching educational platform.
+
+\section{Authentication (Firebase + Room)}
+The authentication system of the application is powered by Firebase and RoomDB, combining the strengths of both technologies to ensure a seamless and secure user experience. Firebase Authentication is utilized for its robust email/password sign-in method, providing users with a straightforward and reliable way to access the platform.
+
+Upon successful authentication, Firebase manages all user states and details, leveraging Firestore for efficient storage and retrieval of user information. RoomDB serves as a cache, storing user credentials locally to enable automatic login on subsequent app launches. This approach enhances user convenience, as users need only log in once to access the application's features.
+
+During app initialization, if the RoomDB contains user information, the user is automatically logged in, eliminating the need for repeated authentication. Subsequently, additional user details such as username and profile picture are stored in Firestore, ensuring centralized management and easy accessibility across the application.
+
+This integration of Firebase and RoomDB not only streamlines the authentication process but also enhances the overall security and reliability of the application, providing users with a seamless and hassle-free authentication experience.
+
+\section{Firebase Storage}
+
+Firebase Storage serves as the designated repository for storing user profile pictures within the application. When users create or edit their profiles, Firebase Storage provides a reliable and scalable solution for securely storing and accessing profile images.
+
+Upon profile creation or modification, the user's profile picture is uploaded to Firebase Storage, ensuring efficient and centralized management of multimedia content. This approach allows users to personalize their profiles with ease, enhancing the overall user experience.
+
+By leveraging Firebase Storage, the application benefits from robust storage capabilities, seamless integration with other Firebase services, and straightforward access controls. This ensures that user profile pictures are securely stored and readily accessible whenever needed, contributing to a visually engaging and personalized user experience.
+
+\section{Firebase Firestore}
+
+Firebase Firestore serves as the primary document database for storing a wide range of data within the application. It facilitates the storage of user-related information, including usernames, followers, following, chats and other metadata essential for user interactions and engagement.
+
+Additionally, Firestore is utilized for storing question titles, descriptions, tags, and answers, forming the backbone of the application's Q\&A functionality. This allows users to seamlessly post and access questions and answers, contributing to a collaborative learning environment.
+
+Furthermore, Firestore enables real-time communication through its integration with the application's chat feature. Users can engage in private conversations, fostering interaction and community building within the platform.
+
+By leveraging Firestore's scalability, real-time updates, and seamless integration with other Firebase services, the application ensures efficient storage and retrieval of data, facilitating a dynamic and engaging user experience.
+
+
+% add main app above %
+\section{Optical Character Recognition Module}
+To streamline text input from images, our application features OCR (Optical Character Recognition) technology. This capability allows users to easily convert text in images into editable text directly within the app. This feature is primarily demonstrated within the question posting section, highlighting its simplicity, adaptability, and reliability. This enhancement draws inspiration from the Android-OCR project by Achmad Qomarudin.
+
+For seamless image-to-text conversion, we've integrated TessBaseAPI into our system, complemented by additional tools for a more robust functionality. Given the necessity for processing images locally, it's essential to have access to pre-trained data. To facilitate this, we provided an option to download these data files through a dedicated download manager, which operates within a CoroutineScope. This ensures that users are kept informed of the download progress via the UI. It's important to note that skipping the download will disable the OCR feature. The data will be verified each time the activity initiates, if the data is corrupted, the download process will be automatically triggered again.
+
+Given that images may contain unnecessary visual elements, we've incorporated a cropping tool. This tool, powered by the Android-Image-Cropper library, helps users isolate the text they wish to convert. This functionality is not limited to OCR; it's also implemented for profile picture uploads. User can zoom in and out, flip or rotate the image before it is processed by the OCR function.
+
+To boost the precision of our OCR, we've further implemented basic image preprocessing. This includes adjusting the image's grayscale before conversion, ensuring higher accuracy. The processed images are temporarily stored in local storage and will be automatically deleted once the activity finishes.
+
+After the OCR function converts the image to text, the result text can be viewed and edited in a separate page, togather with the cropped image for reference. Then, the text can be automatically transferred to the caller activity within the application using the Intent putExtra method. This ensures a smooth and efficient workflow, where users can easily view and verify the converted text, then quickly move from capturing or selecting an image to utilizing the extracted text in their posts or queries, enhancing the overall user experience.
+
+User consent is crucial in mobile application, especially regarding the download of supplementary data as well as accessing the camera and gallery. All necessary permissions will be asked, including the right to download, open camera and access the photos, before carrying out the activities.
+
+Dagger Hilt for dependency injection is implemented within the OCR module. Although the specifics of Dagger Hilt's application in this context might not be immediately apparent, it serves a critical role in simplifying dependency management. By using Dagger Hilt, we were able to streamline the process of providing dependencies for the OCR functionality, such as the TessBaseAPI and the download manager for training data. This not only makes the codebase modular and easier to maintain but also improves the scalability of our application.
+
+\section{Gemini Artificial Intelligence Service}
+
+The Gemini Artificial Intelligence (AI) service is a key component of our application, offering users advanced capabilities for knowledge exchange. Driven by sophisticated algorithms, Gemini AI provides accurate and insightful responses to a diverse array of queries, spanning various subjects and topics. This service significantly improves the efficiency of knowledge exchange, particularly in situations where users need immediate answers or when their questions go unanswered. 
+
+This service is integrated into the question details screen, allowing users to view both the question and its answers. With a simple click, users can query the AI service for a response regarding the current question. This seamless integration enhances the user experience by providing quick access to additional information and insights.
+
+\section{Wolfram|Alpha Network Retrofit Service}
+
+The Wolfram|Alpha Network Retrofit Service employs networking advanced mobile features to enhance the user experience. This service is seamlessly integrated into the application to augment the capabilities of the Gemini AI service, particularly for math-related queries. As a failover mechanism, it ensures that users always receive accurate answers to their math questions, even when the Gemini AI encounters limitations. Implemented using the Retrofit library, this integration allows for easy API calls to the Wolfram|Alpha service over the network. When a math-related query causes the Gemini AI service to fail to respond correctly, the application automatically switches to the Wolfram|Alpha Retrofit Service to fetch the answer, thereby improving the user experience. By leveraging Wolfram|Alpha's expertise in mathematical computations, this integration enriches the user's learning experience by providing comprehensive support for a wide range of questions. This networking advanced mobile feature ensures reliable and efficient communication with external services, enhancing the overall functionality and usability of the application.
+
+\section{Design and Personalisation}
+
+The design of the application draws inspiration from Human-Computer Interaction (HCI) concepts, specifically focusing on the use of pastel colors known for their soothing and visually appealing properties. Inspired by the Catppuccin Theme, renowned for its pastel color palette, the application's design aims to create a calming and inviting user interface. To achieve this, we utilized a sample image with Catppuccin-inspired colors to generate a color scheme for our application using the Material Theme Builder, ensuring visual coherence and harmony throughout the interface.
+
+In our design approach, we employed wrappers such as Composable surfaces, cards, and boxes to create a layered and structured layout, enhancing usability by providing clear delineation between different elements and functionalities. Taking cues from popular social media platforms like Reddit and Instagram, we prioritized creating a visually engaging interface to encourage user interaction and participation, aiming to cultivate a conducive environment for education. Overall, the design reflects a thoughtful integration of HCI principles, pastel color schemes, and design elements inspired by renowned social media platforms, all aimed at providing an engaging and visually pleasing user experience conducive to learning and collaboration.
