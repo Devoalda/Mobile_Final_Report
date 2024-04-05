@@ -31,32 +31,38 @@ Lastly, the inclusion of \textbf{Gemini AI SDK library} elevates the application
 Each functionality implemented was carefully considered for its seamless integration into the user's workflow within the application. While the application mirrors the look and feel of popular social media platforms like Instagram for personalization, additional functionalities such as Text-to-Speech were omitted in favor of Google's GBoard, which provides efficient implementation. Furthermore, OCR Technologies are implemented with privacy in mind, ensuring local processing and the removal of images after processing.
 
 
-\section{Authentication (Firebase + Room)}
-The authentication system of the application is powered by Firebase and RoomDB, combining the strengths of both technologies to ensure a seamless and secure user experience. Firebase Authentication is utilized for its robust email/password sign-in method, providing users with a straightforward and reliable way to access the platform.
+\section{Firebase Services}
 
-Upon successful authentication, Firebase manages all user states and details, leveraging Firestore for efficient storage and retrieval of user information. RoomDB serves as a cache, storing user credentials locally to enable automatic login on subsequent app launches. This approach enhances user convenience, as users need only log in once to access the application's features.
+Firebase serves as the backbone of our application, providing a secure and scalable infrastructure that caters to our authentication, database, and media storage needs.
 
-During app initialization, if the RoomDB contains user information, the user is automatically logged in, eliminating the need for repeated authentication. Subsequently, additional user details such as username and profile picture are stored in Firestore, ensuring centralized management and easy accessibility across the application.
+\subsection{Firebase Authentication}
 
-This integration of Firebase and RoomDB not only streamlines the authentication process but also enhances the overall security and reliability of the application, providing users with a seamless and hassle-free authentication experience.
+Our authentication system is powered by Firebase and RoomDB, combining their strengths to ensure a seamless and secure user experience. Firebase Authentication offers robust email/password sign-in methods, providing users with a straightforward way to access the platform.
 
-\section{Firebase Storage}
+Upon successful authentication, Firebase manages user states and details, while RoomDB serves as a local cache, storing user credentials for automatic login on subsequent app launches. This enhances user convenience by eliminating the need for repeated authentication.
 
-Firebase Storage serves as the designated repository for storing user profile pictures within the application. When users create or edit their profiles, Firebase Storage provides a reliable and scalable solution for securely storing and accessing profile images.
+During app initialization, if RoomDB contains user information, users are automatically logged in, with additional user details retrieved from Firestore for centralized management and accessibility across the application.
 
-Upon profile creation or modification, the user's profile picture is uploaded to Firebase Storage, ensuring efficient and centralized management of multimedia content. This approach allows users to personalize their profiles with ease, enhancing the overall user experience.
+This integration streamlines authentication while enhancing security and reliability, with Firebase providing additional features such as hashing, password reset, and secure user details storage.
 
-By leveraging Firebase Storage, the application benefits from robust storage capabilities, seamless integration with other Firebase services, and straightforward access controls. This ensures that user profile pictures are securely stored and readily accessible whenever needed, contributing to a visually engaging and personalized user experience.
+\subsection{Firebase Storage}
 
-\section{Firebase Firestore}
+Firebase Storage is utilized for storing user profile pictures within the application. It provides a reliable and scalable solution for securely storing and accessing profile images, facilitating easy personalization of user profiles.
 
-Firebase Firestore serves as the primary document database for storing a wide range of data within the application. It facilitates the storage of user-related information, including usernames, followers, following, chats and other metadata essential for user interactions and engagement.
+Upon profile creation or modification, profile pictures are uploaded to Firebase Storage, ensuring efficient management of multimedia content. This approach enhances user experience by enabling seamless profile customization.
 
-Additionally, Firestore is utilized for storing question titles, descriptions, tags, and answers, forming the backbone of the application's Q\&A functionality. This allows users to seamlessly post and access questions and answers, contributing to a collaborative learning environment.
+Leveraging Firebase Storage offers robust storage capabilities, straightforward access controls, and seamless integration with other Firebase services, ensuring secure and readily accessible profile pictures.
 
-Furthermore, Firestore enables real-time communication through its integration with the application's chat feature. Users can engage in private conversations, fostering interaction and community building within the platform.
+\subsection{Firebase Firestore}
 
-By leveraging Firestore's scalability, real-time updates, and seamless integration with other Firebase services, the application ensures efficient storage and retrieval of data, facilitating a dynamic and engaging user experience.
+Firebase Firestore acts as the primary document database for storing various data within the application. It facilitates the storage of user-related information, including usernames, followers, following, chats, and metadata essential for user interactions.
+
+Moreover, Firestore powers the Q\&A functionality by storing question titles, descriptions, tags, and answers, enabling users to post and access questions and answers seamlessly, fostering a collaborative learning environment.
+
+Additionally, Firestore enables real-time communication through its integration with the chat feature, allowing users to engage in private conversations and community building within the platform.
+
+By leveraging Firestore's scalability, real-time updates, and integration with other Firebase services, the application ensures efficient data storage and retrieval, contributing to a dynamic and engaging user experience.
+
 
 
 % add main app above %
@@ -77,9 +83,11 @@ Dagger Hilt for dependency injection is implemented within the OCR module. Altho
 
 \section{Gemini Artificial Intelligence Service}
 
-The Gemini Artificial Intelligence (AI) service is a key component of our application, offering users advanced capabilities for knowledge exchange. Driven by sophisticated algorithms, Gemini AI sdk provides accurate and insightful responses to a diverse array of queries in 'Study Together', spanning various subjects and topics. This service significantly improves the efficiency of knowledge exchange, particularly in situations where users need immediate answers or when their questions go unanswered. 
+The Gemini Artificial Intelligence (AI) service stands as a cornerstone in our application, enriching the user experience with advanced capabilities for knowledge exchange. Powered by sophisticated algorithms, the Gemini AI SDK delivers precise and insightful responses to a wide array of queries within 'Study Together', covering diverse subjects and topics. This service plays a pivotal role in enhancing the efficiency of knowledge exchange, especially in scenarios where users require immediate answers or face unanswered questions.
 
-This service is integrated into the question details screen, allowing users to view both the question and its answers. With a simple click, users can query the AI service for a response regarding the current question. This seamless integration enhances the user experience by providing quick access to additional information and insights.
+Integrated seamlessly into the question details screen, the Gemini AI service offers users a streamlined experience for accessing both the question and its answers. With a simple click, users can leverage the AI service to receive additional insights and information related to the current question. This integration not only enhances user experience but also provides quick and convenient access to valuable knowledge, thereby fostering a more enriched learning environment.
+
+Moreover, the Gemini AI service brings unparalleled convenience to users by eliminating the need to search elsewhere, such as on Google or ChatGPT, for answers. This saves users time and spares them the trouble of navigating multiple sources. Additionally, the answers generated by the Gemini AI service are more accurate and reliable compared to answers provided by users, ensuring that users receive high-quality information tailored to their queries.
 
 \section{Wolfram|Alpha Network Retrofit Service}
 
@@ -100,13 +108,22 @@ Overall, our design embodies a purposeful integration of HCI principles, pastel 
 
 \section{Foreground Notification Service}
 
-% Our application features a thoughtfully designed notification system that aggregates daily updates on new questions posted by the accounts a user follows. This daily digest approach was selected to strike a balance between staying informed and avoiding a deluge of alerts that might overwhelm the user and clutter the app's interface. Given that a user may follow numerous accounts, each potentially posting multiple questions, a once-a-day notification prevents the bombardment of updates and helps maintain a clean, user-friendly experience. The notifications are crafted to be concise yet comprehensive, displaying the poster’s profile image, name, and the topic of the question. This design choice ensures users receive a snapshot of the day’s activity, enabling them to stay abreast of the latest inquiries without having to sift through a continuous stream of notifications. It's a harmonious blend of simplicity and functionality, ensuring the user remains connected to the evolving conversation landscape with minimal intrusion.
-
-
 % need to mod this still to talk more about the implementation (technical) aspect - Jovian
-Our application's notification service is developed with user autonomy and privacy at its core, only activating when a user grants permission within the app settings. This level of user control extends to their ability to opt out at any time, upholding our commitment to privacy and adherence to data protection regulations. Notifications are thus a reflection of our respect for the user's right to choose how and when to be informed about activity in the community.
+% Our application's notification service is developed with user autonomy and privacy at its core, only activating when a user grants permission within the app settings. This level of user control extends to their ability to opt out at any time, upholding our commitment to privacy and adherence to data protection regulations. Notifications are thus a reflection of our respect for the user's right to choose how and when to be informed about activity in the community.
 
-The daily updates feature is a curated digest of new questions posted by followed accounts, designed to provide information without overwhelming users with frequent alerts. By delivering these summaries once a day, we prevent an overabundance of notifications that could disrupt the user experience. The design of the notifications themselves is minimalist and informative, showing the poster’s profile picture, name, and the subject of the question, allowing users to quickly gauge the day's content at a glance.
+% The daily updates feature is a curated digest of new questions posted by followed accounts, designed to provide information without overwhelming users with frequent alerts. By delivering these summaries once a day, we prevent an overabundance of notifications that could disrupt the user experience. The design of the notifications themselves is minimalist and informative, showing the poster’s profile picture, name, and the subject of the question, allowing users to quickly gauge the day's content at a glance.
 
-This approach to notifications serves to create a streamlined, interruption-free environment, offering users a simple yet effective means of staying up-to-date with community discussions, reflective of their interests and interactions, while preserving the sleek, user-friendly interface of our application.
+% This approach to notifications serves to create a streamlined, interruption-free environment, offering users a simple yet effective means of staying up-to-date with community discussions, reflective of their interests and interactions, while preserving the sleek, user-friendly interface of our application.
+
+Harnessing the capabilities of Android's ecosystem, our application's notification service is ingeniously integrated using the NotificationManager system. This allows users to tailor their notification experience directly within the system's settings, ensuring their control over the notifications' visibility and significance.
+
+The service is enshrined within a Service class, allowing it to operate independently from the user interface. It performs in the background with discretion, routinely checking for new content while judiciously managing battery and data consumption through Android's JobScheduler. The delivery of daily notifications is precisely timed using a Handler and Looper mechanism, ensuring reliability. PendingIntent is employed to deliver a seamless transition for users from the notification back to the application.
+
+The service skillfully assembles notifications, infusing them with the most recent and relevant user data to create a NotificationParcel. With the assistance of Glide, a formidable image processing library, profile pictures are swiftly loaded and cached, minimizing load times and data usage. This content is presented within a RemoteViews layout, which is crafted to allow users to swiftly understand and engage with the day's essential information.
+
+The design of the notifications adheres to the Material Design guidelines, ensuring consistency in look and feel across different Android devices. Notifications feature a properly scaled app icon to reinforce brand identity, along with BigTextStyle to allow for an expanded view of the content when interacted with.
+
+This technical execution, coupled with a staunch commitment to user privacy and autonomy, ensures that the service is initiated only after users have given explicit consent through the app settings, aligning with our stringent privacy policies and data protection standards. The daily summary feature thoughtfully compiles new contributions from monitored sources, maintaining a delicate equilibrium between user engagement and the avoidance of excessive notification alerts. The streamlined design of the notifications, which showcases only the essential elements like the author's profile image, name, and topic, signifies our commitment to a minimalist and informative user interface.
+
+Overall, our notification service is more than a mechanism; it embodies our broader aspiration for an attentive and uninterrupted user journey. This service is a testament to our investment in user-oriented customization, sophisticated technical design, and a deep respect for users' desires for a non-disruptive yet enriching experience with the app.
 

@@ -7,7 +7,7 @@
 \documentclass[
 a4paper, 
 11pt, 
-% draft
+draft
 ]{report}
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
@@ -23,6 +23,13 @@ a4paper,
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
+
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=ynt
+]{biblatex}
+\addbibresource{Mobile_Project_Design.bib}
 
 \usepackage{amsfonts, amsmath, amsthm, amssymb} % For math fonts, symbols and environments
 \usepackage{graphicx} % Required for including images
@@ -111,7 +118,8 @@ a4paper,
 
 \newpage
 
-% \bibliography{Mobile_Project_Design} 
+\printbibliography
+
 % \bibliographystyle{ieee}
 
 %----------------------------------------------------------------------------------------

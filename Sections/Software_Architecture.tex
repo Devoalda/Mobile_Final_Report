@@ -22,6 +22,8 @@ Our Android application "Study Together" harnesses a robust software architectur
 Central to "Study Together" is the QuestionManager Package, a comprehensive module designed for handling the core functionality of questions and answers within the app. It interfaces with Google's Gemini AI API and WolframAlpha API, providing users with intelligent and automated potential solutions. Additionally, this package allows users to contribute by uploading their own answers and participating in a communal voting system to surface the most helpful responses.
 
 % Enhancing user interaction with the app, the OcrManager component incorporates an OCR library, enabling users to easily convert images into text. This feature simplifies the process of question submission, as users can quickly extract text from pictures taken with their device cameras, thereby facilitating a hassle-free question upload experience.
+
+%This portion should be inside app arch instead of here -JW
 The OcrManager is implemented as an individual activity, designed to be deployed in multiple places as needed. The activity, using a view model, typically uses the live data holding an UI state class, to switch between different composable screens swiftly. Different features are developed as sub-components in the activity, such as download manager, image-saving manager, and the text recogniser. This modular design allows the components of the activity be easily reused.
 
 Complementing these features is the app's Real-time Chat function, also powered by Firebase Database, which offers a seamless platform for users to engage in discussions and collaborate in real-time.
